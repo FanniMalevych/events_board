@@ -5,7 +5,7 @@ export default function EventsBoard () {
     const [greeting, setGreeting] = useState('')
 
     useEffect(() => {
-        axios.get('/api').then((res) => {
+        axios.get('https://events-board-api.vercel.app/api').then((res) => {
         console.log(res.data);
         
           setGreeting(res.data)
