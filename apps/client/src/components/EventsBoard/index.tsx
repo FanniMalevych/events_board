@@ -6,6 +6,8 @@ export default function EventsBoard () {
 
     useEffect(() => {
         axios.get('/api').then((res) => {
+        console.log(res.data);
+        
           setGreeting(res.data)
         })
       }, [])
