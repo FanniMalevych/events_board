@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://localhost:3000',
-        target: 'https://events-board-api.vercel.app/',
+        target: 'https://events-board-api.vercel.app',
         changeOrigin: true
       }
     }
