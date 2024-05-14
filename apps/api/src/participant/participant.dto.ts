@@ -3,5 +3,5 @@ export class ParticipantDTO {
     email: string;
     dateBirth: Date;
     details: string;
-    eventId: string | number;
+    eventId: number;
 }

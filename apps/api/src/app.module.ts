@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from './event/event.entity';
 import { Participant } from './participant/participant.entity';
 import { EventModule } from './event/event.module';
+import { ParticipantModule } from './participant/participant.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { EventModule } from './event/event.module';
       synchronize: true,
       logging: true,
     }),
-    EventModule
+    EventModule,
+    ParticipantModule
   ],
   controllers: [AppController],
   providers: [AppService],
