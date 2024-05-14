@@ -3,12 +3,28 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Event } from './event/event.entity';
+import { Participant } from './participant/participant.entity';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      password: 'admin',
+      username: 'admin',
+      entities: [Event, Participant],
+      database: 'events',
+      synchronize: true,
+      logging: true,
+    }),
+    EventModule
   ],
   controllers: [AppController],
   providers: [AppService],
