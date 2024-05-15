@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,10 +17,7 @@ import { ParticipantModule } from './participant/participant.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      password: 'admin',
-      username: 'admin',
+      url: process.env.POSTGRES_URL,
       entities: [Event, Participant],
       database: 'events',
       synchronize: true,
