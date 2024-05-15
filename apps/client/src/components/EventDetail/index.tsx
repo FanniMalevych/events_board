@@ -10,7 +10,7 @@ export default function EventDetail () {
     const [part, setPart] = useState([])
     const [filteredParticipants, setFilteredParticipants] = useState(event.participants)
     const [inputText, setInputText] = useState("");
-  const inputHandler = (e) => {
+  const inputHandler = (e: any) => {
     //convert input text to lower case
     const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);

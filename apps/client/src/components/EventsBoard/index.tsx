@@ -6,7 +6,7 @@ import { Box, Pagination, Typography } from "@mui/material";
 import { paginate } from "../../Utils/Pagination";
 
 export default function EventsBoard () {
-    const [greeting, setGreeting] = useState('')
+ 
     const [events, setEvents] = useState([])
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -16,11 +16,6 @@ export default function EventsBoard () {
  
 
     useEffect(() => {
-        axios.get('https://events-board-api.vercel.app/api').then((res) => {
-        console.log(res.data);
-        
-          setGreeting(res.data)
-        })
 
         axios.get('https://events-board-api-a7x1.onrender.com/api/event').then((res) => {
 
