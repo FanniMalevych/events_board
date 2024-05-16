@@ -10,11 +10,10 @@ export default function EventDetail () {
     const [part, setPart] = useState([])
     const [filteredParticipants, setFilteredParticipants] = useState(event.participants)
     const [inputText, setInputText] = useState("");
-  const inputHandler = (e: any) => {
-    //convert input text to lower case
-    const lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-  };
+    const inputHandler = (e: any) => {
+        const lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
     useEffect(() => {
         axios.get(`https://events-board-api-a7x1.onrender.com/api/event/${param.id}`).then((res: any) => {
             console.log(res.data);
@@ -26,24 +25,26 @@ export default function EventDetail () {
     useEffect(() => {
         const newP = part.filter((el: any) => el.name.toLowerCase().includes(inputText) | el.email.toLowerCase().includes(inputText))
         setFilteredParticipants(newP)
-        console.log(newP, inputText);
         
     }, [inputText])
     return (
         <>
             <BackButton/>
-            <Typography variant="h4">Event {event?.eventDetail.title} Detail</Typography>
-            <Typography variant="h5">number of participants: {event?.participants.length}</Typography>
-            <TextField
-                id="outlined-basic"
-                variant="outlined"
-                fullWidth
-                label="Search"
-                onChange={inputHandler}
-                />
+            <Typography variant="h4" m={5}>Event <b>{event?.eventDetail.title}</b> detail</Typography>
+            <Box display='flex' alignItems='center'>
+                <Typography variant="h6" m={5}>number of participants: {event?.participants.length}</Typography>
+                <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    fullWidth
+                    label="Search"
+                    onChange={inputHandler}
+                    />
+            </Box>
+            
             <Box display='flex'>
             {filteredParticipants?.map((el: any) => (
-                <Box m={2}>
+                <Box m={2} key={el.id}>
                 <Card sx={{ maxWidth: 345 }} >
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -57,7 +58,6 @@ export default function EventDetail () {
                 </Box>
             ))}
             </Box>
-
         </>
     )
 }
